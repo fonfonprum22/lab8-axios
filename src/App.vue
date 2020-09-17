@@ -1,32 +1,39 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div  class="center examplex">
+      <vs-navbar center-collapsed v-model="active" >
+        <vs-navbar-item :active="active == 'mars'" id="mars" to="/" >
+          Mars
+        </vs-navbar-item>
+        <vs-navbar-item :active="active == 'donki'" id="donki" to="/donki">
+          Donki
+        </vs-navbar-item>
+        <vs-navbar-item :active="active == 'earth'" id="earth"  to="/earth">
+          Earth
+        </vs-navbar-item>
+        <vs-navbar-item :active="active == 'epic'" id="epic" to="/epic">
+          Epic
+        </vs-navbar-item>
+      </vs-navbar>
+    <div class="square pa-3" id="view">
+      <router-view  class="child"/>
     </div>
-    <router-view/>
-  </div>
+    </div>
+
 </template>
 
+ <script>
+  export default {
+    data:() => ({
+      active: 'mars'
+    })
+  }
+  </script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+#view{
+  background-color: #FCFCFC;
+  padding-top: 50px;
+  padding: 20px;
 }
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+  
 </style>
