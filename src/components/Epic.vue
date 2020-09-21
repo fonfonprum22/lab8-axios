@@ -1,30 +1,10 @@
 <template>
 <div>
-     <vs-card type="5">
-    <template #title>
-      <h3>Pot with a plant</h3>
-    </template>
-    <template #img>
-      <img src="../assets/logo.png" alt="">
-    </template>
-    <template #text>
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-      </p>
-    </template>
-    <template #interactions>
-      <vs-button danger icon>
-        <i class='bx bx-heart'></i>
-      </vs-button>
-      <vs-button class="btn-chat" shadow primary>
-        <i class='bx bx-chat' ></i>
-        <span class="span">
-          54
-        </span>
-      </vs-button>
-    </template>
-  </vs-card>
-
+  <div  :class="{ hasOpenLoading }">
+  </div>
+   <div class="row" v-if="hasOpenLoading != true">
+     {{epic}}
+</div>
 </div>
 </template>
 
@@ -33,21 +13,27 @@
 export default {
   data() {
     return {
-      epic: "",
+      epic: "hello",
+      hasOpenLoading: true,
     };
   },
   components: {},
   methods: {
-    fetchEpic: function () {
+    fetchEpic: function (type) {
+       const loading = this.$vs.loading({
+         type
+       })
       this.axios
         .get("https://api.nasa.gov/EPIC/api/natural?api_key=DEMO_KEY")
         .then((res) => {
           this.epic = res.data;
+          loading.close()
+          this.hasOpenLoading = false
         });
     },
   },
   created() {
-    this.fetchEpic();
+    this.fetchEpic('corners');
   },
 };
 </script>

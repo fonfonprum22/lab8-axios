@@ -17,10 +17,10 @@ const routes = [{
             import ('../components/Donki.vue')
     },
     {
-        path: '/earth',
-        name: 'Earth',
+        path: '/inSight',
+        name: 'InSight',
         component: () =>
-            import ('../components/Earth.vue')
+            import ('../components/InSight.vue')
     },
     {
         path: '/epic',
